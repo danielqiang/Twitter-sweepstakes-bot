@@ -1,2 +1,2 @@
-# Twitter-sweepstakes-bot
+# twitter-sweepstakes-bot
 A bot that automatically enters sweepstakes contests on Twitter.
