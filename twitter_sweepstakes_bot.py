@@ -10,13 +10,13 @@ ACCESS_TOKEN_SECRET = ''
 # Handle Twitter OAuth
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_KEY_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-# If Twitter refuses a tweepy request due to rate limit, wait
+# Wait if Twitter temporarily blocks requests
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 
 def parse(text):
     """
-    Parses text for a twitter status and returns relevant "action" keywords.
+    Parses text for a twitter status and returns relevant action keywords.
     """
     twitter_actions = ['follow', 'retweet', 'rt', 'comment', 'like', 'fav']
     return [action for action in twitter_actions if action in text]
@@ -31,7 +31,6 @@ def perform_twitter_action(action, tweet_handle):
 
     :type action: string
     :type tweet_handle: tweepy Status object.
-    :return:
     """
     if action in ['retweet', 'rt']:
         api.retweet(tweet_handle.id)
@@ -47,6 +46,9 @@ def perform_twitter_action(action, tweet_handle):
 
 
 def clear():
+    """
+    Clears all tweets and favorited tweets from a twitter account.
+    """
     for user_id in api.friends_ids():
         api.destroy_friendship(user_id)
     for i, tweet_handle in enumerate(tweepy.Cursor(api.home_timeline).items()):
@@ -54,16 +56,18 @@ def clear():
 
 
 def main():
+    """
+    Runs the script.
+    """
     results = tweepy.Cursor(api.search, q="chance to win").items(1000)
     for i, result in enumerate(results):
-        # If there are twitter actions to perform, it's likely an contest
         actions = parse(result.text.lower())
-        if actions:
-            for action in actions:
-                try:
-                    perform_twitter_action(action, result)
-                except tweepy.error.TweepError:
-                    pass
+        # If there are twitter actions to perform, it's likely an contest.
+        for action in actions:
+            try:
+                perform_twitter_action(action, result)
+            except tweepy.error.TweepError:
+                pass
 
 
 if __name__ == '__main__':
