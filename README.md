@@ -7,6 +7,6 @@ This bot uses [Tweepy](http://docs.tweepy.org/en/v3.5.0/), which is a Twitter AP
 Once you have an API key and CSE ID, just put them into twitter_sweepstakes_bot.py and run the script.
 
 ## Comments
-This was a very quick project, inspired by an awesome [DEFCON presentation](https://www.youtube.com/watch?v=iAOOdYsK7MM). Go check it out!
+This was a very quick project, inspired by [this awesome DEFCON presentation](https://www.youtube.com/watch?v=iAOOdYsK7MM). Go check it out!
 
 You can also follow my bot account [here](https://twitter.com/qiang_daniel).
