@@ -9,4 +9,4 @@ Once you have an API key and CSE ID, just put them into twitter_sweepstakes_bot.
 ## Comments
 This was a very quick project, inspired by [a cool DEFCON presentation](https://www.youtube.com/watch?v=iAOOdYsK7MM). Feel free to check it out.
 
-You can also follow my bot account [here](https://twitter.com/qiang_daniel).
+You can also follow my bot account [here](https://twitter.com/duck_bot132).
